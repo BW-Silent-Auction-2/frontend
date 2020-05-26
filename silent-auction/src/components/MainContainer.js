@@ -1,14 +1,30 @@
 import '../css/index.css';
-import React, { useState } from 'react';
-
-import AuctionList from './ActionList';
-
-import {Route} from 'react-router-dom';
-
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 import AuctionCard from './AuctionCard';
 import Auction from "../data/auctionData"
 
 const MainContainer = props => {
+
+    const [auctions, setAuction] = useState([]);
+
+    useEffect(() => {
+
+
+        axios
+          .get(`https://silent-auction-2.herokuapp.com/auth/users/auction/all`)
+          .then(response => {
+            // set up the live auction list
+            //setAuction(response.data.results);
+            console.log(response);
+            window.scrollTo(0, 0);
+          })
+          .catch(err => {
+            console.log(err);
+          }
+          );
+      }, [auctions])
+
 
     return (
         <div className = "mainContainer">
