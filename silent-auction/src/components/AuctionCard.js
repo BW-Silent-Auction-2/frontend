@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const AuctionCard = props => {
   const [currentBid, setCurrentBid] = useState(0);
+  const [loggedIn, setLoggedIn] = useState(true);
   //setCurrentBid(props.auction.currentBid);
   
   return (
@@ -16,7 +17,7 @@ const AuctionCard = props => {
           <p>Current Bid: <span>${currentBid}</span></p>
           <p>Time Left: <span>1day 2h 32sec</span></p>
 
-          <div className="buttonContainer"><div className="bid">Bid</div></div>
+          {loggedIn ? <div className="buttonContainer"><div className="bid">Bid</div></div> : ""}
                           
        </div>
     
