@@ -1,4 +1,5 @@
 
+// just dummy data to get a list on the home page until I had an end point. 
 export const Auction = {
     id: 1,
     images: ["https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fantiquefurnituredirect.co.uk%2Fwp-content%2Fuploads%2F2016%2F08%2FP1012313-768x1024.jpg&f=1&nofb=1"],
