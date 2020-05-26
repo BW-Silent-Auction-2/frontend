@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const AuctionCard = props => {
   const [currentBid, setCurrentBid] = useState(0);
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(true); // only show the bid button if logged in
   //setCurrentBid(props.auction.currentBid);
   
   return (
