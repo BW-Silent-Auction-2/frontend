@@ -1,0 +1,96 @@
+.createAuctionCard {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 350px;
+    border: 1px solid  rgb(78, 78, 82);
+    background-color: rgb(204, 193, 193);
+    padding: 1%;
+    margin: 1%;
+
+    line-height: 1px;
+    box-shadow: 2px 2px grey;
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 2%;
+    }
+
+    p {
+        line-height: normal;
+        margin-bottom: 10%;
+    }
+    
+    .buttonContainer{
+        display: flex;
+        justify-content: flex-end
+    }
+
+    .createButton {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      
+        border-radius: 10px;
+        background-color: rgb(78, 78, 82);
+        padding: 5px;
+        color: white;
+        box-shadow: 2px 2px grey;
+        height: 15px;
+        width: 100px;
+
+        border: 2px solid @orange;
+
+        cursor: pointer;
+
+    }
+
+    .formContainer {
+        form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 1%;
+
+        input {
+            margin-bottom: 5%;
+        }
+          
+        label {
+            margin-bottom: 3%;
+        }
+       
+        .imageContainer {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 5%;
+
+            .auctionImage {
+                padding: 1%;
+               
+                img {
+                    width: 85px;
+                    height: 90px;
+                }
+            }
+        }
+
+        
+    }
+        
+    }
+
+    .buttonContainer {
+        display: flex;
+        justify-content: center;
+        margin-top: 5%;
+    }
+
+    
+    
+    
+
+    
+}
