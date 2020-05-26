@@ -2,8 +2,55 @@ import React, { useState, useEffect } from 'react';
 import '../../css/index.css';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import * as yup from "yup";
+
+const formSchema = yup.object().shape({
+  firstName: yup
+    .string()
+    .required("First name is a required field"),
+  lastName : yup
+    .string()
+    .required("Last name is a required field"),
+  email: yup
+    .string()
+    .email("Must be a valid email address")
+    //.matches(/^(?!waffle@syrup.com$)/, "Email already in use")
+    .required("Must include email address"),
+  password : yup
+    .string()
+    .required("Password is a required field"),
+    
+    
+});
 
 const SignupCard = props => {
+
+  const [errorState, setErrorState] = useState({
+    firstName: "",
+    lastName :"", 
+    email: "",
+    password: ""
+  });
+
+  const validate = e => {
+    let value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    yup
+      .reach(formSchema, e.target.name)
+      .validate(value)
+      .then(valid => {
+        setErrorState({
+          ...errorState,
+          [e.target.name]: ""
+        });
+      })
+      .catch(err => {
+        setErrorState({
+          ...errorState,
+          [e.target.name]: err.errors[0]
+        });
+      });
+  };
 
   const [formState, setFormState] = useState({
 
@@ -18,13 +65,18 @@ const SignupCard = props => {
 
   const inputChange = (e) => {
     e.persist();
-    // validate the form
-
+    validate(e);
     let value = e.target.value;
     value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setFormState({ ...formState, [e.target.name]: value });
 
   }
+
+  useEffect(() => {
+    formSchema.isValid(formState).then(valid => {
+      //setButtonDisabled(!valid); // enable submit button if form is valid
+    });
+  }, [formState]);
 
   useEffect(() => {
     /*axios
@@ -44,6 +96,8 @@ const SignupCard = props => {
     console.log(formState);
   };
 
+  
+
   return (
 
     <div className="mainContainer">
@@ -58,9 +112,12 @@ const SignupCard = props => {
               name="firstName"
               type="text"
               placeholder="First name"
-              //value={formData.firstName}
+              value={formState.firstName}
               onChange={inputChange}
             />
+            {errorState.firstName.length > 0 ? (
+                    <p className="error">{errorState.firstName}</p>
+                ) : null}
 
             <label htmlFor="lastName"></label>
             <input
@@ -68,9 +125,12 @@ const SignupCard = props => {
               name="lastName"
               type="text"
               placeholder="Last name"
-              //value={formData.lastName}
+              value={formState.lastName}
               onChange={inputChange}
             />
+            {errorState.lastName.length > 0 ? (
+                    <p className="error">{errorState.lastName}</p>
+                ) : null}
 
             <label htmlFor="email"></label>
             <input
@@ -81,9 +141,13 @@ const SignupCard = props => {
               //value={formData.email}
               onChange={inputChange}
             />
+            {errorState.email.length > 0 ? (
+                    <p className="error">{errorState.email}</p>
+                ) : null}
 
             <label htmlFor="password"></label>
             <input
+              className="password"
               id="password"
               name="password"
               type="password"
@@ -91,8 +155,14 @@ const SignupCard = props => {
               //value={formData.password}
               onChange={inputChange}
             />
-            <label htmlFor="userType">User Type:</label>
+            {errorState.password.length > 0 ? (
+                    <p className="error">{errorState.password}</p>
+                ) : null}
+
+
+            <label className="userType" htmlFor="userType">User Type:</label>
             <select
+              
               name="userType"
               id="userType"
               //value={formState.userType}
@@ -110,7 +180,7 @@ const SignupCard = props => {
 
         </div>
 
-        
+
 
       </div>
     </div>
