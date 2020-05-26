@@ -27,9 +27,6 @@ const MainContainer = props => {
            <AuctionCard auction={Auction}/> 
            <AuctionCard auction={Auction}/> 
            <AuctionCard auction={Auction}/>
-           
-
-
         </div>
        </div>
 
