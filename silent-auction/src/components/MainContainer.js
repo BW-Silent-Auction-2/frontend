@@ -29,7 +29,7 @@ const MainContainer = props => {
     return (
         <div className = "mainContainer">
         <div className="content" >
-            {// yes we need to map over the auctions when I have access. For now just dummy data}
+            {/* yes we need to map over the auctions when I have access. For now just dummy data */}
            <AuctionCard auction={Auction}/> 
            <AuctionCard auction={Auction}/> 
            <AuctionCard auction={Auction}/> 
