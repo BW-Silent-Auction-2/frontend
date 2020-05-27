@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom';
 
 const AuctionCard = props => {
   const [currentBid, setCurrentBid] = useState(0);
-  const [loggedIn, setLoggedIn] = useState(true); // only show the bid button if logged in
+  const [loggedIn, setLoggedIn] = useState(false); // only show the bid button if logged in
   //setCurrentBid(props.auction.currentBid);
   
   return (
     
     
       <div className="auctionCard" >
-          <div className="imageContainer"><img src={props.auction.images[0]}/></div>
+          {/* WE HAVE NO IMAGES IN THE BACKEND SO I HAD TO USE A TERANY */}
+          {props.auction.images ? <div className="imageContainer"><img src={props.auction.images[0]}/></div> : ""}
           <h1>{props.auction.title}</h1>
           <p>{props.auction.description}</p>
           <p>Current Bid: <span>${currentBid}</span></p>
