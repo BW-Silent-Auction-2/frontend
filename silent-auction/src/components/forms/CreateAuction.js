@@ -31,6 +31,7 @@ const CreateAuctionCard = props => {
         bidderId: "",
         title: "",
         description: "",
+        bid: 0,
         initialPrice: 0,
         timeSubmitted: "",
         timeEnd: new Date(),
