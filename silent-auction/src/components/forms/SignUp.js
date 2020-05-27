@@ -96,8 +96,6 @@ const SignupCard = props => {
     console.log(formState);
   };
 
-  
-
   return (
 
     <div className="mainContainer">
