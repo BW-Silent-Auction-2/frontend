@@ -6,7 +6,7 @@ import Auction from "../data/auctionData"
 
 const MainContainer = props => {
 
-    const [auctions, setAuction] = useState([]);
+    const [auctions, setAuctions] = useState([]);
 
     useEffect(() => {
 
@@ -15,35 +15,23 @@ const MainContainer = props => {
           .get(`https://silent-auction-2.herokuapp.com/auth/users/auction/all`)
           .then(response => {
             // set up the live auction list
-            //setAuction(response.data.results);
-            console.log(response);
+            setAuctions(response.data);
+            console.log(auctions);
             window.scrollTo(0, 0);
           })
           .catch(err => {
             console.log(err);
           }
           );
-      }, [auctions])
+      }, [])
 
 
     return (
         <div className = "mainContainer">
         <div className="content" >
-            {/* yes we need to map over the auctions when I have access. For now just dummy data */}
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/> 
-           <AuctionCard auction={Auction}/>
+            {auctions.map((auction, i) => {
+                return <AuctionCard key={auction.id} auction={auction} />;
+            })}
         </div>
        </div>
 
