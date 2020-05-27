@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../../css/index.css';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateAuctionCard = props => {
 
@@ -10,11 +12,15 @@ const CreateAuctionCard = props => {
         id: 0,
         images: [],
         sellerId: 0, // the id of the seller
+        bidderId: "",
         title: "",
         description: "",
-        startingPrice: 0,
-        currentBid: 0,
-        duration: "1 Day",
+        initialPrice: 0,
+        timeSubmitted: "",
+        timeEnd: new Date(),
+        timeDuration: "",
+        timeDurationInMs: "",
+        completed: false
         //reserve: 100,// min price the seller will take for the item
         //bidHistory: [] // array of objects holding all the bidder id's and what they bid for this item
 
@@ -33,11 +39,15 @@ const CreateAuctionCard = props => {
         }
         ); */
 
+        //getDate();
+        //setFormState({ ...formState, [timeSubmitted]: getDate() });
+
     }, [formState]); 
 
     const handleSubmit = (event) => {
         
         event.preventDefault();
+        formState.timeSubmitted = Math.floor(Date.now() / 1000);
         console.log(formState);
 
     };
@@ -59,6 +69,7 @@ const CreateAuctionCard = props => {
         }
 
     }
+
 
     return (
 
@@ -102,18 +113,18 @@ const CreateAuctionCard = props => {
                             onChange={inputChange}
                         />
 
-                        <label htmlFor="startingPrice"></label>
+                        <label htmlFor="initialPrice"></label>
                         <input
-                            id="startingPrice"
-                            name="startingPrice"
+                            id="initialPrice"
+                            name="initialPrice"
                             type="text"
                             placeholder="Starting Price"
                             //value={formData.name}
                             onChange={inputChange}
                         />
 
-                        <label htmlFor="duration">Duration:</label>
-                        <select
+                        <label htmlFor="endDate">End date:</label>
+                        {/*<select
                             name="duration"
                             id="duration"
                             //value={formState.size}
@@ -125,7 +136,14 @@ const CreateAuctionCard = props => {
                             <option value="fourDay">4 Days </option>
                             <option value="fiveDay">5 Days </option>
 
-                        </select>
+                        </select>*/}
+                        <DatePicker
+                        showPopperArrow={true}
+                        selected={new Date(formState.timeEnd)}
+                        onChange={date => setFormState({ ...formState, timeEnd: date.toLocaleDateString()})}       //formState.timeEnd = date}
+                        
+                      
+                    />
 
 
                     </form>
