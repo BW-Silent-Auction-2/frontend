@@ -15,8 +15,8 @@ const AuctionCard = props => {
           {props.auction.images ? <div className="imageContainer"><img src={props.auction.images[0]}/></div> : ""}
           <h1>{props.auction.title}</h1>
           <p>{props.auction.description}</p>
-          <p>Current Bid: <span>${currentBid}</span></p>
-          <p>Time Left: <span>1day 2h 32sec</span></p>
+          <p>Current Bid: <span>${props.auction.bid}</span></p>
+          <p>Time Left: <span>{props.auction.timeDuration}</span></p>
 
           {loggedIn ? <div className="buttonContainer"><div className="bid">Bid</div></div> : ""}
                           
