@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import axios from "axios";
 import * as yup from "yup";
 import "../css/index.css";
@@ -10,7 +10,7 @@ const formSchema = yup.object().shape({
 })
 
 
-export const Form = ()=>{
+const Header = () => {
   const [formState, setFormState] = useState({
     email: "",
     password: ""
@@ -48,9 +48,8 @@ const validate = e => {
 const inputChange = e => {
   e.persist();
   validate(e);
-  let value =
-  e.target.type === "checkbox" ?
-  e.traget.checked : e.target.value;
+  let value = e.target.value;
+  value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
   setFormState({ ...formState, [e.target.name] : value });
 }
 
@@ -63,37 +62,9 @@ const formSubmit = e => {
   .catch(err => console.log(err));
 };
 
-return (
-  <form onSubmit={formSubmit}>
-<label htmlForm="email">
-  <input
-  type="text"
-  name="email"
-  id="email"
-  placeholder="Email Address"
-  value={formState.email}
-  onChange={inputChange}
-  />
-  {errorState.email.length > 0 ? ( <p className="error">{errorState.email}</p>) : null}
-</label>
-<label htmlForm="password">
-  <input
-  type="text"
-  name="password"
-  id="password"
-  placeholder="password"
-  value={formState.password}
-  onChange={inputChange}
-  />
-</label>
-<button disabled = {buttonDisabled}>Login</button>
-  </form>
-)
-
-}
-const Header = () => {
   return (
-    <Router>
+    
+    
       <div className="container-wrapper">
         <div className="container-navbar">
           <h1>SILENT AUCTION</h1>
@@ -106,12 +77,38 @@ const Header = () => {
             <button>
               <Link to="/create">Create Auction</Link>
             </button>
-            <Form />
+      
+            <form onSubmit={formSubmit}>
+    <label htmlFor="email">
+      <input
+      type="text"
+      name="email"
+      id="email"
+      placeholder="Email Address"
+      value={formState.email}
+      onChange={inputChange}
+      />
+      {errorState.email.length > 0 ? ( <p className="error">{errorState.email}</p>) : null}
+    </label>
+    <label htmlFor="password">
+      <input
+      type="text"
+      name="password"
+      id="password"
+      placeholder="Password"
+      value={formState.password}
+      onChange={inputChange}
+      />
+    </label>
+    <button disabled = {buttonDisabled}>Login</button>
+      </form>
+
+
             <button>Sign Up</button>
           </nav>
         </div>
       </div>
-    </Router>
+   
   );
 };
 
