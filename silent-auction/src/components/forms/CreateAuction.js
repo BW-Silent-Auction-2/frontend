@@ -4,8 +4,24 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import * as yup from "yup";
+
+const formSchema = yup.object().shape({
+    title: yup
+        .string()
+        .required("Title is a required field"),
+    description: yup
+        .string()
+        .required("Description is a required field"),
+    initialPrice: yup
+        .number()
+        .required("Starting price is a required field")
+
+});
 
 const CreateAuctionCard = props => {
+
+    const images = [];
 
     const [formState, setFormState] = useState({
 
@@ -26,26 +42,41 @@ const CreateAuctionCard = props => {
 
     });
 
-    const images = [];
+    const [errorState, setErrorState] = useState({
+        title: "",
+        description: "",
+        initialPrice: 0,
+
+    });
+
+    const validate = e => {
+        let value =
+            e.target.type === "checkbox" ? e.target.checked : e.target.value;
+        yup
+            .reach(formSchema, e.target.name)
+            .validate(value)
+            .then(valid => {
+                setErrorState({
+                    ...errorState,
+                    [e.target.name]: ""
+                });
+            })
+            .catch(err => {
+                setErrorState({
+                    ...errorState,
+                    [e.target.name]: err.errors[0]
+                });
+            });
+    };
 
     useEffect(() => {
-        /*axios
-        .get()
-        .then(response => {
-                  
-        })
-        .catch(err => {
-          console.log(err);
-        }
-        ); */
-
-        //getDate();
-        //setFormState({ ...formState, [timeSubmitted]: getDate() });
-
-    }, [formState]); 
+        formSchema.isValid(formState).then(valid => {
+            //setButtonDisabled(!valid); // enable submit button if form is valid
+        });
+    }, [formState]);
 
     const handleSubmit = (event) => {
-        
+
         event.preventDefault();
         formState.timeSubmitted = Math.floor(Date.now() / 1000);
         console.log(formState);
@@ -55,7 +86,7 @@ const CreateAuctionCard = props => {
 
     const inputChange = (e) => {
         e.persist();
-        // validate the form 
+        validate(e);
         let value = e.target.value;
         if (e.target.type === "file") {
             value = e.target.files[0];
@@ -82,8 +113,8 @@ const CreateAuctionCard = props => {
                         <div className="imageContainer">
                             {// map over the images 
                                 formState.images.map((image, i) => {
-                                    
-                                    return <div className="auctionImage" key={i}><img  src={image} /></div>
+
+                                    return <div className="auctionImage" key={i}><img src={image} /></div>
 
                                 })}
 
@@ -102,6 +133,9 @@ const CreateAuctionCard = props => {
                             //value={formData.name}
                             onChange={inputChange}
                         />
+                        {errorState.title.length > 0 ? (
+                            <p className="error">{errorState.title}</p>
+                        ) : null}
 
                         <label htmlFor="description"></label>
                         <input
@@ -112,6 +146,9 @@ const CreateAuctionCard = props => {
                             //value={formData.name}
                             onChange={inputChange}
                         />
+                        {errorState.description.length > 0 ? (
+                            <p className="error">{errorState.description}</p>
+                        ) : null}
 
                         <label htmlFor="initialPrice"></label>
                         <input
@@ -122,6 +159,9 @@ const CreateAuctionCard = props => {
                             //value={formData.name}
                             onChange={inputChange}
                         />
+                        {errorState.initialPrice.length > 0 ? (
+                            <p className="error">{errorState.initialPrice}</p>
+                        ) : null}
 
                         <label htmlFor="endDate">End date:</label>
                         {/*<select
@@ -138,12 +178,12 @@ const CreateAuctionCard = props => {
 
                         </select>*/}
                         <DatePicker
-                        showPopperArrow={true}
-                        selected={new Date(formState.timeEnd)}
-                        onChange={date => setFormState({ ...formState, timeEnd: date.toLocaleDateString()})}       //formState.timeEnd = date}
-                        
-                      
-                    />
+                            showPopperArrow={true}
+                            selected={new Date(formState.timeEnd)}
+                            onChange={date => setFormState({ ...formState, timeEnd: date.toLocaleDateString() })}       //formState.timeEnd = date}
+
+
+                        />
 
 
                     </form>
