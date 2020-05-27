@@ -16,6 +16,8 @@ const Header = () => {
     password: ""
   })
 
+  const [loggedIn, setLoggedIn] = useState(true);
+
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
   useEffect(() => {
@@ -32,8 +34,8 @@ const [errorState, setErrorState] = useState({
 
 const validate = e => {
   let value = 
-  e.target.type === "checkbox" ?
-  e.target.checked : e.target.value;
+  e.target.type === "text" ?
+  e.target.name : e.target.value;
   yup
   .reach(formSchema, e.target.name)
   .validate(value)
@@ -49,7 +51,7 @@ const inputChange = e => {
   e.persist();
   validate(e);
   let value = e.target.value;
-  value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  // value = e.target.type === "text" ? e.target.checked : e.target.value;
   setFormState({ ...formState, [e.target.name] : value });
 }
 
@@ -78,8 +80,8 @@ const formSubmit = e => {
               <Link to="/create">Create Auction</Link>
             </button>
       
-            <form onSubmit={formSubmit}>
-    <label htmlFor="email">
+            <form id="form" onSubmit={formSubmit}>
+    <label class="formLabel" htmlFor="email">
       <input
       type="text"
       name="email"
@@ -90,7 +92,7 @@ const formSubmit = e => {
       />
       {errorState.email.length > 0 ? ( <p className="error">{errorState.email}</p>) : null}
     </label>
-    <label htmlFor="password">
+    <label class="formLabel" htmlFor="password">
       <input
       type="text"
       name="password"
