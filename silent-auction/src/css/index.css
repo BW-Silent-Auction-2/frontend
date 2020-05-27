@@ -314,6 +314,12 @@ body {
 .createAuctionCard .formContainer form label {
   margin-bottom: 3%;
 }
+.createAuctionCard .formContainer form .error {
+  color: red;
+  margin: 2px;
+  font-size: 1rem;
+  margin-bottom: 1%;
+}
 .createAuctionCard .formContainer form .imageContainer {
   display: flex;
   flex-wrap: wrap;
