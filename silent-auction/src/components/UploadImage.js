@@ -1,4 +1,4 @@
-//import '../css/index.css';
+import '../css/index.css';
 import React, { useState, useEffect } from 'react';
 
 function UploadImage(props) {
