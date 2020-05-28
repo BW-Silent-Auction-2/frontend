@@ -20,9 +20,10 @@ function UploadImage(props) {
             }
         )
         const file = await res.json()
+        //console.log(file);
         setImage(file.secure_url)
         setLoading(false)
-        console.log(data.values())
+        //console.log(data.values())
     }
 
     useEffect (()=>{
@@ -42,7 +43,7 @@ function UploadImage(props) {
             ) : (
                     <img src={image} style={{ width: '300px' }} />
                 )}
-            <h1>{image}</h1>
+            
             
 
         </div>

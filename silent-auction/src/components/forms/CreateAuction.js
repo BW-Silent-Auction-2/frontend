@@ -76,12 +76,6 @@ const CreateAuctionCard = props => {
 
     const [buttonDisabled, setSubmitButton] = useState(true);
 
-    useEffect(() =>{
-        // testing to see if image gets set
-        console.log(`New image : ${image}`);
-
-    }, [image])
-
     useEffect(() => {
         formSchema.isValid(formState).then(valid => {
             setSubmitButton(!valid); // enable submit button if form is valid
