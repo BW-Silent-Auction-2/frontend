@@ -5,6 +5,7 @@ import axios from "axios";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import * as yup from "yup";
+import UploadImage from '../UploadImage';
 
 const formSchema = yup.object().shape({
     title: yup
@@ -23,10 +24,12 @@ const CreateAuctionCard = props => {
 
     const images = [];
 
+    const [image, setImage] = useState('')
+
     const [formState, setFormState] = useState({
 
         id: 0,
-        images: [],
+        imgUrl: "",
         sellerId: 0, // the id of the seller
         bidderId: "",
         title: "",
@@ -74,11 +77,13 @@ const CreateAuctionCard = props => {
         formSchema.isValid(formState).then(valid => {
             //setButtonDisabled(!valid); // enable submit button if form is valid
         });
+        //formState.imgUrl = image;
     }, [formState]);
 
     const handleSubmit = (event) => {
 
         event.preventDefault();
+        formState.imgUrl = image;
         formState.timeSubmitted = Math.floor(Date.now() / 1000);
         axios
             .post("", formState) // need end point
@@ -94,10 +99,12 @@ const CreateAuctionCard = props => {
         validate(e);
         let value = e.target.value;
         if (e.target.type === "file") {
+            console.log(value);
+             
             value = e.target.files[0];
             const objectURL = URL.createObjectURL(value) // grab the full local URL
             formState.images.push(objectURL);
-            setFormState({ ...formState, [images]: objectURL });
+           setFormState({ ...formState, [images]: objectURL });
 
         } else {
             value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
@@ -115,7 +122,7 @@ const CreateAuctionCard = props => {
                 <h1>Create A New Auction</h1>
                 <div className="formContainer">
                     <form>
-                        <div className="imageContainer">
+                        {/*<div className="imageContainer">
                             {// map over the images 
                                 formState.images.map((image, i) => {
 
@@ -124,9 +131,15 @@ const CreateAuctionCard = props => {
                                 })}
 
 
+                            </div>*/}
+
+                        <div className="imageContainer">
+                        <UploadImage image={image} setImage={setImage}/>
                         </div>
-                        <label className="addImage" htmlFor="images">Add images:</label>
-                        <input onChange={inputChange} type="file" id="image" name="image" accept="image/png, image/jpeg" />
+                        
+
+                        {/*<label className="addImage" htmlFor="images">Add images:</label>
+                        <input onChange={inputChange} type="file" id="image" name="image" accept="image/png, image/jpeg" />*/}
 
 
                         <label htmlFor="title"></label>
