@@ -138,11 +138,10 @@ table {
   justify-content: space-evenly;
   border: solid red;
   width: 100%;
-  align-content: center;
   align-items: center;
 }
 .container-wrapper .container-navbar h1 {
-  padding: 4px;
+  padding: 2px;
   border: solid;
   width: 20%;
 }
@@ -150,14 +149,14 @@ table {
   display: flex;
   border: solid yellow;
   width: 100%;
+  height: 70%;
   justify-content: space-evenly;
 }
 button {
   display: flex;
   justify-content: space-evenly;
-  padding: 1%;
-  width: 15%;
-  margin: 1%;
+  padding: 0.5%;
+  width: 10%;
   font-size: 1rem;
   border: solid blue;
   border-radius: 4px;
