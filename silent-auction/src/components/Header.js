@@ -5,7 +5,7 @@ import * as yup from "yup";
 import "../css/index.css";
 
 const formSchema = yup.object().shape({
-  email: yup.string().email().required("Email is required"),
+  email: yup.string().email("Must be a valid email address").required("Email is required"),
   password: yup.string().required("Password is required")
 })
 
@@ -14,9 +14,8 @@ const Header = () => {
   const [formState, setFormState] = useState({
     email: "",
     password: ""
-  })
+  });
 
-  const [loggedIn, setLoggedIn] = useState(true);
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
@@ -34,15 +33,20 @@ const [errorState, setErrorState] = useState({
 
 const validate = e => {
   let value = 
-  e.target.type === "text" ?
-  e.target.name : e.target.value;
+   e.target.value;
   yup
   .reach(formSchema, e.target.name)
   .validate(value)
   .then(valid => {
     setErrorState({
       ...errorState,
-      [e.target.name] : ""
+      [e.target.name]: ""
+    });
+  })
+  .catch(err => {
+    setErrorState({
+      ...errorState,
+      [e.target.name]: err.errors[0]
     });
   });
 };
@@ -50,9 +54,8 @@ const validate = e => {
 const inputChange = e => {
   e.persist();
   validate(e);
-  let value = e.target.value;
-  // value = e.target.type === "text" ? e.target.checked : e.target.value;
-  setFormState({ ...formState, [e.target.name] : value });
+  let value =  e.target.value;
+  setFormState({ ...formState, [e.target.name]: value });
 }
 
 const formSubmit = e => {
@@ -79,9 +82,10 @@ const formSubmit = e => {
             <button>
               <Link to="/create">Create Auction</Link>
             </button>
+
       
             <form id="form" onSubmit={formSubmit}>
-    <label class="formLabel" htmlFor="email">
+    <label className="formLabel" htmlFor="email">
       <input
       type="text"
       name="email"
@@ -92,7 +96,7 @@ const formSubmit = e => {
       />
       {errorState.email.length > 0 ? ( <p className="error">{errorState.email}</p>) : null}
     </label>
-    <label class="formLabel" htmlFor="password">
+    <label className="formLabel" htmlFor="password">
       <input
       type="text"
       name="password"
@@ -101,6 +105,7 @@ const formSubmit = e => {
       value={formState.password}
       onChange={inputChange}
       />
+      {errorState.password.length > 0 ? ( <p className="error">{errorState.password}</p>) : null}
     </label>
     <button disabled = {buttonDisabled}>Login</button>
       </form>
