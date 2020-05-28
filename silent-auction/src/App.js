@@ -5,7 +5,8 @@ import { Route } from 'react-router-dom';
 import Header from "../src/components/Header";
 import MainContainer from './components/MainContainer';
 import SignUp from './components/forms/SignUp';
-import CreateAuctionCard from './components/forms/CreateAuction'
+import CreateAuctionCard from './components/forms/CreateAuction';
+import Conformation from "./components/Conformation";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
       </Route >
       <Route exact path='/login'>
         <p>login</p>
+      </Route>
+      <Route exact path="/confirm">
+        <Conformation />
       </Route>
     </div>
   );

@@ -388,3 +388,14 @@ button a {
   display: flex;
   justify-content: center;
 }
+.confirm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+}
+.confirm h1 {
+  font-size: 3rem;
+  margin-bottom: 1%;
+}
