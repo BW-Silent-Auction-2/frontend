@@ -73,9 +73,11 @@ const CreateAuctionCard = props => {
             });
     };
 
+    const [buttonDisabled, setSubmitButton] = useState(true);
+
     useEffect(() => {
         formSchema.isValid(formState).then(valid => {
-            //setButtonDisabled(!valid); // enable submit button if form is valid
+            setSubmitButton(!valid); // enable submit button if form is valid
         });
         //formState.imgUrl = image;
     }, [formState]);
@@ -190,7 +192,7 @@ const CreateAuctionCard = props => {
                         />
                     </form>
                 </div>
-                <div className="buttonContainer" onClick={handleSubmit}><div className="createButton">Start Auction</div></div>
+                {!buttonDisabled ? <div className="buttonContainer" onClick={handleSubmit}><div className="createButton">Start Auction</div></div> : ""}
             </div>
         </div>
     );

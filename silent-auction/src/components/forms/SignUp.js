@@ -92,9 +92,11 @@ const SignupCard = props => {
 
   }
 
+  const [buttonDisabled, setSubmitButton] = useState(true);
+
   useEffect(() => {
     formSchema.isValid(formState).then(valid => {
-      //setButtonDisabled(!valid); // enable submit button if form is valid
+      setSubmitButton(!valid); // enable submit button if form is valid
     });
   }, [formState]);
 
@@ -195,7 +197,7 @@ const SignupCard = props => {
 
             </select>
 
-            <div className="buttonContainer" onClick={handleSubmit}>  <div className="signup">Submit</div></div>
+            {!buttonDisabled ? <div className="buttonContainer" onClick={handleSubmit}>  <div className="signup">Submit</div></div> : ""}
 
           </form>
 
