@@ -89,7 +89,7 @@ const CreateAuctionCard = props => {
         formState.imgUrl = image;
         formState.timeSubmitted = Math.floor(Date.now() / 1000);
         axios
-            .post("", formState) // need end point
+            .post("https://silent-auction-2.herokuapp.com/auth/users/auction/create", formState) // need end point
             .then(response => console.log(response))
             .catch(err => console.log(err));
         console.log(formState);
