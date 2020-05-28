@@ -16,6 +16,7 @@ const formSchema = yup.object().shape({
         .required("Description is a required field"),
     initialPrice: yup
         .number()
+        .moreThan(0, "Must be greater than zero")
         .required("Starting price is a required field")
 
 });
@@ -150,7 +151,7 @@ const CreateAuctionCard = props => {
                             name="title"
                             type="text"
                             placeholder="Title"
-                            //value={formData.name}
+                            value={formState.title}
                             onChange={inputChange}
                         />
                         {errorState.title.length > 0 ? (
@@ -163,7 +164,7 @@ const CreateAuctionCard = props => {
                             name="description"
                             type="text"
                             placeholder="Description"
-                            //value={formData.name}
+                            value={formState.description}
                             onChange={inputChange}
                         />
                         {errorState.description.length > 0 ? (
@@ -176,7 +177,7 @@ const CreateAuctionCard = props => {
                             name="initialPrice"
                             type="text"
                             placeholder="Starting Price"
-                            //value={formData.name}
+                            value={formState.initialPrice}
                             onChange={inputChange}
                         />
                         {errorState.initialPrice.length > 0 ? (
