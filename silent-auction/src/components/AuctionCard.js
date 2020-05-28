@@ -79,7 +79,7 @@ const AuctionCard = props => {
 
            <div className="buttonContainer" onClick={handleSubmit}><div className="bid">Place Bid</div></div> 
 
-        </form> : ""
+        </form> : "This auction has completed."
 
 
         : ""}
