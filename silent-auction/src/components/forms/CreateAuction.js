@@ -80,6 +80,10 @@ const CreateAuctionCard = props => {
 
         event.preventDefault();
         formState.timeSubmitted = Math.floor(Date.now() / 1000);
+        axios
+            .post("", formState) // need end point
+            .then(response => console.log(response))
+            .catch(err => console.log(err));
         console.log(formState);
 
     };
@@ -165,39 +169,17 @@ const CreateAuctionCard = props => {
                         ) : null}
 
                         <label htmlFor="endDate">End date:</label>
-                        {/*<select
-                            name="duration"
-                            id="duration"
-                            //value={formState.size}
-                            onChange={inputChange}
-                        >
-                            <option value="onDay">1 Day</option>
-                            <option value="twoDay">2 Days </option>
-                            <option value="threeDay">3 Days </option>
-                            <option value="fourDay">4 Days </option>
-                            <option value="fiveDay">5 Days </option>
 
-                        </select>*/}
                         <DatePicker
                             showPopperArrow={true}
                             selected={new Date(formState.timeEnd)}
                             onChange={date => setFormState({ ...formState, timeEnd: date.toLocaleDateString() })}       //formState.timeEnd = date}
-
-
                         />
-
-
                     </form>
-
-
                 </div>
-
                 <div className="buttonContainer" onClick={handleSubmit}><div className="createButton">Start Auction</div></div>
-
             </div>
         </div>
-
-
     );
 }
 
