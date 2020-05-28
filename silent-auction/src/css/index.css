@@ -331,14 +331,7 @@ body {
 .createAuctionCard .formContainer form .imageContainer {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 5%;
-}
-.createAuctionCard .formContainer form .imageContainer .auctionImage {
-  padding: 1%;
-}
-.createAuctionCard .formContainer form .imageContainer .auctionImage img {
-  width: 85px;
-  height: 90px;
+  margin-top: 5%;
 }
 .createAuctionCard .buttonContainer {
   display: flex;
@@ -384,4 +377,13 @@ button {
 button a {
   text-decoration: none;
   color: black;
+}
+.upload {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.upload .imageContainer {
+  display: flex;
+  justify-content: center;
 }
