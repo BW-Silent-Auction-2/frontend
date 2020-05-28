@@ -43,7 +43,7 @@ const AuctionCard = props => {
 
     <div className="auctionCard" >
       {/* WE HAVE NO IMAGES IN THE BACKEND SO I HAD TO USE A TERANY */}
-      {props.auction.images ? <div className="imageContainer"><img src={props.auction.images[0]} /></div> : ""}
+      <div className="imageContainer"><img src={props.auction.imgUrl} /></div>
       <h1>{props.auction.title}</h1>
       <p>{props.auction.description}</p>
       <p>Current Bid: <span>${props.auction.bid}</span></p>
