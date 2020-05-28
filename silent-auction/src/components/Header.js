@@ -5,14 +5,14 @@ import * as yup from "yup";
 import "../css/index.css";
 
 const formSchema = yup.object().shape({
-  email: yup.string().email("Must be a valid email address").required("Email is required"),
+  username: yup.string().required("Username is required"),
   password: yup.string().required("Password is required")
 })
 
 
 const Header = () => {
   const [formState, setFormState] = useState({
-    email: "",
+    username: "",
     password: ""
   });
 
@@ -27,7 +27,7 @@ const Header = () => {
 
 
 const [errorState, setErrorState] = useState({
-  email: "",
+  username: "",
   password: ""
 });
 
@@ -62,7 +62,7 @@ const formSubmit = e => {
   e.preventDefault();
   console.log("form submitted!");
   axios
-  .post("https://regres.in/api/users", formState)
+  .post("https://silent-auction-2.herokuapp.com/auth/users/login", formState)
   .then(response => console.log(response))
   .catch(err => console.log(err));
 };
@@ -85,16 +85,16 @@ const formSubmit = e => {
 
       
             <form id="form" onSubmit={formSubmit}>
-    <label className="formLabel" htmlFor="email">
+    <label className="formLabel" htmlFor="username">
       <input
       type="text"
-      name="email"
-      id="email"
-      placeholder="Email Address"
-      value={formState.email}
+      name="username"
+      id="username"
+      placeholder="Username"
+      value={formState.username}
       onChange={inputChange}
       />
-      {errorState.email.length > 0 ? ( <p className="error">{errorState.email}</p>) : null}
+      {errorState.username.length > 0 ? ( <p className="error">{errorState.username}</p>) : null}
     </label>
     <label className="formLabel" htmlFor="password">
       <input
