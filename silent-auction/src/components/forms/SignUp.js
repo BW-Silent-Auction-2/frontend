@@ -23,7 +23,7 @@ const formSchema = yup.object().shape({
     .required(),
   username : yup
     .string()
-    .required()  
+    .required("User name is a required field")  
 
 
 });
