@@ -203,6 +203,7 @@ body {
   justify-content: space-evenly;
 }
 .auctionCard form input {
+  text-align: center;
   width: 75px;
 }
 .signUpCard {
