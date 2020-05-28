@@ -8,26 +8,28 @@ const formSchema = yup.object().shape({
   firstName: yup
     .string()
     .required("First name is a required field"),
-  lastName : yup
+  lastName: yup
     .string()
     .required("Last name is a required field"),
   email: yup
     .string()
     .email("Must be a valid email address")
-    //.matches(/^(?!waffle@syrup.com$)/, "Email already in use")
     .required("Must include email address"),
-  password : yup
+  password: yup
     .string()
     .required("Password is a required field"),
-    
-    
+  userType: yup
+    .string()
+    .required()
+
+
 });
 
 const SignupCard = props => {
 
   const [errorState, setErrorState] = useState({
     firstName: "",
-    lastName :"", 
+    lastName: "",
     email: "",
     password: ""
   });
@@ -52,14 +54,21 @@ const SignupCard = props => {
       });
   };
 
+  // enum for userType
+  var userTypeEnum = {
+    buyer: 1,
+    seller: 2,
+  };
+
   const [formState, setFormState] = useState({
 
     id: 0,
+    userName: "",
     firstName: "",
     lastName: "", // the id of the seller
     email: "",
     password: "",
-    userType: "buyer"
+    userType: userTypeEnum['buyer']
 
   });
 
@@ -67,8 +76,15 @@ const SignupCard = props => {
     e.persist();
     validate(e);
     let value = e.target.value;
-    value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    setFormState({ ...formState, [e.target.name]: value });
+    if (e.target.name === "userType") {
+      formState.userType = userTypeEnum[value];
+
+    } else {
+      
+      value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+      setFormState({ ...formState, [e.target.name]: value });
+    }
+
 
   }
 
@@ -78,20 +94,8 @@ const SignupCard = props => {
     });
   }, [formState]);
 
-  useEffect(() => {
-    /*axios
-    .get()
-    .then(response => {
-              
-    })
-    .catch(err => {
-      console.log(err);
-    }
-    ); */
-
-  }, [formState]);
-
   const handleSubmit = (event) => {
+
     event.preventDefault();
     console.log(formState);
   };
@@ -114,8 +118,8 @@ const SignupCard = props => {
               onChange={inputChange}
             />
             {errorState.firstName.length > 0 ? (
-                    <p className="error">{errorState.firstName}</p>
-                ) : null}
+              <p className="error">{errorState.firstName}</p>
+            ) : null}
 
             <label htmlFor="lastName"></label>
             <input
@@ -127,8 +131,8 @@ const SignupCard = props => {
               onChange={inputChange}
             />
             {errorState.lastName.length > 0 ? (
-                    <p className="error">{errorState.lastName}</p>
-                ) : null}
+              <p className="error">{errorState.lastName}</p>
+            ) : null}
 
             <label htmlFor="email"></label>
             <input
@@ -136,12 +140,12 @@ const SignupCard = props => {
               name="email"
               type="text"
               placeholder="Email"
-              //value={formData.email}
+              value={formState.email}
               onChange={inputChange}
             />
             {errorState.email.length > 0 ? (
-                    <p className="error">{errorState.email}</p>
-                ) : null}
+              <p className="error">{errorState.email}</p>
+            ) : null}
 
             <label htmlFor="password"></label>
             <input
@@ -150,17 +154,16 @@ const SignupCard = props => {
               name="password"
               type="password"
               placeholder="Password"
-              //value={formData.password}
+              value={formState.password}
               onChange={inputChange}
             />
             {errorState.password.length > 0 ? (
-                    <p className="error">{errorState.password}</p>
-                ) : null}
+              <p className="error">{errorState.password}</p>
+            ) : null}
 
 
             <label className="userType" htmlFor="userType">User Type:</label>
             <select
-              
               name="userType"
               id="userType"
               //value={formState.userType}
