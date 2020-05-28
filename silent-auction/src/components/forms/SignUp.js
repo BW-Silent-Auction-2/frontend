@@ -20,7 +20,10 @@ const formSchema = yup.object().shape({
     .required("Password is a required field"),
   userType: yup
     .string()
-    .required()
+    .required(),
+  username : yup
+    .string()
+    .required()  
 
 
 });
@@ -28,6 +31,7 @@ const formSchema = yup.object().shape({
 const SignupCard = props => {
 
   const [errorState, setErrorState] = useState({
+    username: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -63,7 +67,7 @@ const SignupCard = props => {
   const [formState, setFormState] = useState({
 
     id: 0,
-    userName: "",
+    username: "",
     firstName: "",
     lastName: "", // the id of the seller
     email: "",
@@ -95,9 +99,12 @@ const SignupCard = props => {
   }, [formState]);
 
   const handleSubmit = (event) => {
-
     event.preventDefault();
-    console.log(formState);
+    axios
+    .post("https://silent-auction-2.herokuapp.com/auth/users/register", formState) // need end point
+    .then(response => console.log(response))
+    .catch(err => console.log(err));
+    //console.log(formState);
   };
 
   return (
@@ -108,6 +115,19 @@ const SignupCard = props => {
         <h1>Create A New Account</h1>
         <div className="formContainer">
           <form onSubmit={handleSubmit}>
+          <label htmlFor="username"></label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              placeholder="User name"
+              value={formState.username}
+              onChange={inputChange}
+            />
+            {errorState.username.length > 0 ? (
+              <p className="error">{errorState.username}</p>
+            ) : null}
+
             <label htmlFor="firstName"></label>
             <input
               id="firstName"
