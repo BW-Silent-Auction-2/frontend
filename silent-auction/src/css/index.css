@@ -158,6 +158,10 @@ body {
   margin: 1%;
   line-height: 1px;
   box-shadow: 2px 2px grey;
+  /*.buttonContainer{
+        display: flex;
+        justify-content: flex-end
+    }*/
 }
 .auctionCard h1 {
   font-size: 1.5rem;
@@ -180,10 +184,6 @@ body {
   height: 250px;
   border-radius: 10px;
 }
-.auctionCard .buttonContainer {
-  display: flex;
-  justify-content: flex-end;
-}
 .auctionCard .bid {
   display: flex;
   justify-content: space-evenly;
@@ -197,6 +197,13 @@ body {
   width: 100px;
   border: 2px solid orange;
   cursor: pointer;
+}
+.auctionCard form {
+  display: flex;
+  justify-content: space-evenly;
+}
+.auctionCard form input {
+  width: 75px;
 }
 .signUpCard {
   display: flex;
