@@ -341,43 +341,74 @@ body {
 }
 .container-wrapper {
   display: flex;
-  padding: 2px;
+  padding: 1.2rem;
   background-color: grey;
   justify-content: space-between;
-  border: solid black;
 }
 .container-wrapper .container-navbar {
   display: flex;
-  justify-content: space-evenly;
-  border: solid red;
+  justify-content: space-between;
   width: 100%;
-  align-content: center;
+  padding: 3px;
   align-items: center;
 }
 .container-wrapper .container-navbar h1 {
-  padding: 4px;
-  border: solid;
-  width: 20%;
+  padding: 2px;
+  width: 30%;
+  font-size: 2rem;
 }
 .container-wrapper .container-navbar .navbar {
   display: flex;
-  border: solid yellow;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: flex-end;
 }
-button {
+.container-wrapper .container-navbar .navbar button {
   display: flex;
-  justify-content: space-evenly;
-  padding: 1%;
-  width: 15%;
-  margin: 1%;
-  border: solid blue;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  padding: 0.5% 0;
+  margin: 0 2%;
+  font-size: 1.3rem;
+  border: 1px solid orange;
   border-radius: 4px;
   background-color: orange;
 }
-button a {
+.container-wrapper .container-navbar .navbar button a {
   text-decoration: none;
   color: black;
+}
+.container-wrapper .container-navbar .navbar form {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  margin: 0 2%;
+  justify-content: space-evenly;
+}
+.container-wrapper .container-navbar .navbar form .error {
+  color: black;
+  font-size: 1.3rem;
+  text-align: center;
+  padding: 2%;
+}
+.container-wrapper .container-navbar .navbar form input {
+  margin: 0 2%;
+  height: 2.3rem;
+  width: 90%;
+  border-radius: 1px;
+  border: gray;
+}
+.container-wrapper .container-navbar .navbar form button {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 20%;
+  height: 2.5rem;
+  font-size: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 1px;
+  background-color: white;
 }
 .upload {
   display: flex;
