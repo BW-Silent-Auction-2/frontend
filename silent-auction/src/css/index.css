@@ -350,11 +350,10 @@ body {
   justify-content: space-evenly;
   border: solid red;
   width: 100%;
-  align-content: center;
   align-items: center;
 }
 .container-wrapper .container-navbar h1 {
-  padding: 4px;
+  padding: 2px;
   border: solid;
   width: 20%;
 }
@@ -362,19 +361,26 @@ body {
   display: flex;
   border: solid yellow;
   width: 100%;
+  height: 70%;
   justify-content: space-evenly;
 }
-button {
+.container-wrapper .container-navbar .navbar .btn-container {
+  justify-content: center;
+  align-items: center;
   display: flex;
   justify-content: space-evenly;
-  padding: 1%;
-  width: 15%;
-  margin: 1%;
-  border: solid blue;
+  padding: 0.5%;
+  width: 10%;
+  font-size: 1rem;
+  border: 1px solid orange;
   border-radius: 4px;
   background-color: orange;
 }
-button a {
+.container-wrapper .container-navbar .navbar form {
+  display: flex;
+  align-items: center;
+}
+a {
   text-decoration: none;
   color: black;
 }
