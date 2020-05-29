@@ -5,8 +5,8 @@ import * as yup from "yup";
 import "../css/index.css";
 
 const formSchema = yup.object().shape({
-  username: yup.string().min(5).required("Username is required"),
-  password: yup.string().required("Password is required")
+  username: yup.string().min(8, "*Must contain 8 characters").required("Username is required"),
+  password: yup.string().required("*Password is required")
 })
 
 const Header = () => {
@@ -86,6 +86,7 @@ const formSubmit = e => {
       
             <form id="form" onSubmit={formSubmit}>
     <label className="formLabel" htmlFor="username">
+    {errorState.username.length > 0 ? ( <p className="error">{errorState.username}</p>) : null}
       <input
       type="text"
       name="username"
@@ -94,9 +95,10 @@ const formSubmit = e => {
       value={formState.username}
       onChange={inputChange}
       />
-      {errorState.username.length > 0 ? ( <p className="error">{errorState.username}</p>) : null}
+      
     </label>
     <label className="formLabel" htmlFor="password">
+    {errorState.password.length > 0 ? ( <p className="error">{errorState.password}</p>) : null}
       <input
       type="text"
       name="password"
@@ -105,7 +107,6 @@ const formSubmit = e => {
       value={formState.password}
       onChange={inputChange}
       />
-      {errorState.password.length > 0 ? ( <p className="error">{errorState.password}</p>) : null}
     </label>
     <button disabled = {buttonDisabled} className="btn-container">Login</button>
       </form>

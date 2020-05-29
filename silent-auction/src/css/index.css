@@ -387,7 +387,8 @@ body {
 }
 .container-wrapper .container-navbar .navbar form .error {
   color: black;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  text-align: center;
   padding: 2%;
 }
 .container-wrapper .container-navbar .navbar form input {
