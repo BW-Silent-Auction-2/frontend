@@ -80,7 +80,9 @@ const Header = () => {
           <button className="btn-container">
             <Link to="/">Home</Link>
           </button>
-          <button className="btn-container"></button>
+          <button className="btn-container">
+            <Link to="/create">Create Auction</Link>
+          </button>
 
           <form id="form" onSubmit={formSubmit}>
             <label className="formLabel" htmlFor="username">
