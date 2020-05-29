@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 const Conformation = props => {
+    const location = useLocation();
 
     const history = useHistory();
 
@@ -14,12 +15,12 @@ const Conformation = props => {
     
     useEffect(() => {
        console.log(props);
-     }, [props.response]);
+     }, []);
     
     return (
 
         <div className="confirm">
-            <h1>Thank you! {props.user}</h1>
+            <h1>Thank you! {location.state.user}</h1>
             
             <div className="buttonContainer" onClick={goHome}><div className="home">Home</div></div>
             

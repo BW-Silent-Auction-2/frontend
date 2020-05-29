@@ -108,7 +108,7 @@ const SignupCard = props => {
     //.post("https://silent-auction-2.herokuapp.com/auth/users/register", formState) // need end point
     //.then(response => console.log(response))
     //.catch(err => console.log(err));
-    history.push("/confirm", formState.firstName );
+    history.push("/confirm", {user: formState.firstName} );
     /*history.push({
       pathname: '/confirm',
       user: formState.firstName 
