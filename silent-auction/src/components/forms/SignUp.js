@@ -3,6 +3,7 @@ import '../../css/index.css';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import * as yup from "yup";
+import { useHistory } from "react-router-dom";
 
 const formSchema = yup.object().shape({
   firstName: yup
@@ -29,6 +30,7 @@ const formSchema = yup.object().shape({
 });
 
 const SignupCard = props => {
+  const history = useHistory();
 
   const [errorState, setErrorState] = useState({
     username: "",
@@ -102,11 +104,15 @@ const SignupCard = props => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-    .post("https://silent-auction-2.herokuapp.com/auth/users/register", formState) // need end point
-    .then(response => console.log(response))
-    .catch(err => console.log(err));
-    //console.log(formState);
+    //axios
+    //.post("https://silent-auction-2.herokuapp.com/auth/users/register", formState) // need end point
+    //.then(response => console.log(response))
+    //.catch(err => console.log(err));
+    history.push("/confirm", formState.firstName );
+    /*history.push({
+      pathname: '/confirm',
+      user: formState.firstName 
+    });*/
   };
 
   return (
