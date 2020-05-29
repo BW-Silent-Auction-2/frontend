@@ -79,7 +79,7 @@ const formSubmit = e => {
             <button className="btn-container">
               <Link to="/">Home</Link>
             </button>
-            <button>
+            <button className="btn-container">
               <Link to="/create">Create Auction</Link>
             </button>
 
@@ -107,11 +107,11 @@ const formSubmit = e => {
       />
       {errorState.password.length > 0 ? ( <p className="error">{errorState.password}</p>) : null}
     </label>
-    <button disabled = {buttonDisabled}>Login</button>
+    <button disabled = {buttonDisabled} className="btn-container">Login</button>
       </form>
 
 
-            <button>
+            <button className="btn-container">
               <Link to="/signup">Sign Up</Link></button>
           </nav>
         </div>
