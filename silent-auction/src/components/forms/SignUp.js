@@ -117,7 +117,7 @@ const SignupCard = props => {
 
   return (
 
-    <div className="mainContainer">
+    <div className="mainContainer">git 
       <div className="signUpCard" >
 
         <h1>Create A New Account</h1>
