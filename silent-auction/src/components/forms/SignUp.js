@@ -104,11 +104,10 @@ const SignupCard = props => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //axios
-    //.post("https://silent-auction-2.herokuapp.com/auth/users/register", formState) // need end point
-    //.then(response => console.log(response))
-    //.catch(err => console.log(err));
-    history.push("/confirm", {user: formState.firstName} );
+    axios
+    .post("https://silent-auction-2.herokuapp.com/auth/users/register", formState) // need end point
+    .then(response => console.log(response))
+    .catch(err => console.log(err));
     history.push("/confirm", {user: formState.firstName, type: 0} );
     /*history.push({
       pathname: '/confirm',
