@@ -5,17 +5,17 @@ import * as yup from "yup";
 import "../css/index.css";
 
 const formSchema = yup.object().shape({
-  username: yup.string().required("Username is required"),
+  username: yup.string().min(5).required("Username is required"),
   password: yup.string().required("Password is required")
 })
-
 
 const Header = () => {
   const [formState, setFormState] = useState({
     username: "",
     password: ""
   });
-
+  
+  //const [loggedIn, setLoggedIn] = useState(false);
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
@@ -76,7 +76,7 @@ const formSubmit = e => {
 
           <nav className="navbar">
             <Route exact path="/"></Route>
-            <button>
+            <button className="btn-container">
               <Link to="/">Home</Link>
             </button>
             <button>
@@ -111,7 +111,8 @@ const formSubmit = e => {
       </form>
 
 
-            <button>Sign Up</button>
+            <button>
+              <Link to="/signup">Sign Up</Link></button>
           </nav>
         </div>
       </div>
