@@ -59,7 +59,7 @@ const AuctionCard = props => {
       {/* WE HAVE NO IMAGES IN THE BACKEND SO I HAD TO USE A TERANY */}
       <div className="imageContainer"><img src={props.auction.imgUrl} /></div>
       <h1>{props.auction.title}</h1>
-      <p>{props.auction.description}</p>
+      <p className="auctionDesc">{props.auction.description}</p>
       <p>Current Bid: <span>${props.auction.bid}</span></p>
       <p>Last bidder: <span>{lastBidder}</span></p>
       <p>Time Left: <span>{props.auction.timeDuration}</span></p>

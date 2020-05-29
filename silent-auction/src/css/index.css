@@ -152,7 +152,7 @@ body {
   flex-direction: column;
   border-radius: 10px;
   width: 250px;
-  height: 570px;
+  height: 650px;
   border: 1px solid #4e4e52;
   background-color: #ccc1c1;
   padding: 1%;
@@ -168,6 +168,9 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10%;
+}
+.auctionCard .auctionDesc {
+  height: 250px;
 }
 .auctionCard p {
   line-height: normal;
