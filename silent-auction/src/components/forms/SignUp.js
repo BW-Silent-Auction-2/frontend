@@ -109,6 +109,7 @@ const SignupCard = props => {
     //.then(response => console.log(response))
     //.catch(err => console.log(err));
     history.push("/confirm", {user: formState.firstName} );
+    history.push("/confirm", {user: formState.firstName, type: 0} );
     /*history.push({
       pathname: '/confirm',
       user: formState.firstName 

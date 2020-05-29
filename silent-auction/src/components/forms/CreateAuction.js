@@ -6,6 +6,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import * as yup from "yup";
 import UploadImage from '../UploadImage';
+import { useHistory } from "react-router-dom";
 
 const formSchema = yup.object().shape({
     title: yup
@@ -22,6 +23,8 @@ const formSchema = yup.object().shape({
 });
 
 const CreateAuctionCard = props => {
+
+    const history = useHistory();
 
     const images = [];
 
@@ -88,11 +91,12 @@ const CreateAuctionCard = props => {
         event.preventDefault();
         formState.imgUrl = image;
         formState.timeSubmitted = Math.floor(Date.now() / 1000);
-        axios
-            .post("https://silent-auction-2.herokuapp.com/auth/users/auction/create", formState) // need end point
-            .then(response => console.log(response))
-            .catch(err => console.log(err));
+        //axios
+         //   .post("https://silent-auction-2.herokuapp.com/auth/users/auction/create", formState) // need end point
+         //   .then(response => console.log(response))
+         //   .catch(err => console.log(err));
         console.log(formState);
+        history.push("/confirm", {auction: formState.title, type: 1} );
 
     };
 
