@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/index.css';
 import { Link } from 'react-router-dom';
 import axios from "axios";
@@ -12,7 +12,7 @@ const AuctionCard = props => {
   });
 
   const [loggedIn, setLoggedIn] = useState(true); // only show the bid button if logged in
-  //setCurrentBid(props.auction.currentBid);
+  const [lastBidder, setLastBidder] =useState("");
 
   const handleSubmit = (event) => {
 
@@ -38,6 +38,20 @@ const AuctionCard = props => {
 
   }
 
+  useEffect(() => {
+    axios
+        .get(`https://silent-auction-2.herokuapp.com/user/${props.auction.bidderId}`)
+        .then(response => {
+            // set up the live auction list
+            setLastBidder(response.data.username)
+            window.scrollTo(0, 0);
+        })
+        .catch(err => {
+            console.log(err);
+        }
+        );
+}, [])
+
   return (
 
 
@@ -47,9 +61,11 @@ const AuctionCard = props => {
       <h1>{props.auction.title}</h1>
       <p>{props.auction.description}</p>
       <p>Current Bid: <span>${props.auction.bid}</span></p>
+      <p>Last bidder: <span>{lastBidder}</span></p>
       <p>Time Left: <span>{props.auction.timeDuration}</span></p>
 
       {loggedIn ?
+        !props.auction.completed ?
         <form onSubmit={handleSubmit}>
           <label htmlFor="amountBid"></label>
           <input
@@ -61,9 +77,9 @@ const AuctionCard = props => {
             onChange={inputChange}
           />
 
-          <div className="buttonContainer" onClick={handleSubmit}><div className="bid">Place Bid</div></div>
+           <div className="buttonContainer" onClick={handleSubmit}><div className="bid">Place Bid</div></div> 
 
-        </form>
+        </form> : "This auction has completed."
 
 
         : ""}
