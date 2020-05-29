@@ -91,10 +91,10 @@ const CreateAuctionCard = props => {
         event.preventDefault();
         formState.imgUrl = image;
         formState.timeSubmitted = Math.floor(Date.now() / 1000);
-        //axios
-         //   .post("https://silent-auction-2.herokuapp.com/auth/users/auction/create", formState) // need end point
-         //   .then(response => console.log(response))
-         //   .catch(err => console.log(err));
+        axios
+            .post("https://silent-auction-2.herokuapp.com/auth/users/auction/create", formState) // need end point
+            .then(response => console.log(response))
+            .catch(err => console.log(err));
         console.log(formState);
         history.push("/confirm", {auction: formState.title, type: 1} );
 
