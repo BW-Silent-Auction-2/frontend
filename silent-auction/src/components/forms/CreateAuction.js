@@ -31,8 +31,7 @@ const CreateAuctionCard = props => {
     const [image, setImage] = useState('')
 
     const [formState, setFormState] = useState({
-
-        id: 0,
+       
         imgUrl: "",
         sellerId: 0, // the id of the seller
         bidderId: "",
