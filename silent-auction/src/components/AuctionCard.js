@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import '../css/index.css';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const AuctionCard = props => {
+
+  const history = useHistory(); 
+
   const [bid, setBid] = useState({
     auctionId: 0,
     bidderId: 0,
@@ -25,6 +29,8 @@ const AuctionCard = props => {
       .then(response => console.log(response, "This is bid", bid))
       .catch(err => console.log(err));
     console.log(bid);
+    history.push("/confirm", {bid: intBid, type: 3} );
+    //history.push("/confirm", {auction: formState.title, type: 1} );
 
   };
 
