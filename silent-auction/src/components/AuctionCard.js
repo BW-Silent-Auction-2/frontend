@@ -16,13 +16,13 @@ const AuctionCard = props => {
 
   const handleSubmit = (event) => {
 
-    event.preventDefault();
-    
-    bid.auctionId = props.auction.id;
+    event.preventDefault();    bid.auctionId = props.auction.id;
     bid.dateOfBid = Math.floor(Date.now() / 1000);
+    const intBid = parseInt(bid.amountBid)
+    const bidToSend = {bid: intBid}
     axios
-      .post("", bid) // need end point
-      .then(response => console.log(response))
+      .put(`https://silent-auction-2.herokuapp.com/auth/users/auction/${bid.auctionId}/bid`, bidToSend) // need end point
+      .then(response => console.log(response, "This is bid", bid))
       .catch(err => console.log(err));
     console.log(bid);
 
@@ -59,7 +59,7 @@ const AuctionCard = props => {
       {/* WE HAVE NO IMAGES IN THE BACKEND SO I HAD TO USE A TERANY */}
       <div className="imageContainer"><img src={props.auction.imgUrl} /></div>
       <h1>{props.auction.title}</h1>
-      <p>{props.auction.description}</p>
+      <p className="auctionDesc">{props.auction.description}</p>
       <p>Current Bid: <span>${props.auction.bid}</span></p>
       <p>Last bidder: <span>{lastBidder}</span></p>
       <p>Time Left: <span>{props.auction.timeDuration}</span></p>
