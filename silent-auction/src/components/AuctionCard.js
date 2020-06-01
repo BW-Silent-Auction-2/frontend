@@ -16,13 +16,13 @@ const AuctionCard = props => {
 
   const handleSubmit = (event) => {
 
-    event.preventDefault();
-    
-    bid.auctionId = props.auction.id;
+    event.preventDefault();    bid.auctionId = props.auction.id;
     bid.dateOfBid = Math.floor(Date.now() / 1000);
+    const intBid = parseInt(bid.amountBid)
+    const bidToSend = {bid: intBid}
     axios
-      .post("", bid) // need end point
-      .then(response => console.log(response))
+      .put(`https://silent-auction-2.herokuapp.com/auth/users/auction/${bid.auctionId}/bid`, bidToSend) // need end point
+      .then(response => console.log(response, "This is bid", bid))
       .catch(err => console.log(err));
     console.log(bid);
 
